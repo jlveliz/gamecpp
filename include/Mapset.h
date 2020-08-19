@@ -7,6 +7,7 @@ class Mapset
     public:
         Mapset();
         char id;
+        bool isBlocked();
 
     protected:
 

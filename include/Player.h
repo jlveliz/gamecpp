@@ -7,9 +7,11 @@ class Player
     public:
         Player();
         void callInput();
+        void resetToSafePosition();
         char userInput;
         int x;
         int y;
+        int lastX , lastY;
 
     protected:
 

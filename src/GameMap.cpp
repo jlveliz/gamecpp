@@ -8,6 +8,7 @@ GameMap::GameMap()
 {
     PlayerCell = NULL;
     loadMapFromFile();
+    isGameOver = false;
 }
 
 void GameMap::draw() {
@@ -19,12 +20,31 @@ void GameMap::draw() {
     }
 }
 
-void GameMap::setPlayerCell(int Playerx, int Playery) {
-    if(PlayerCell != NULL) {
-        PlayerCell->id = 0;
+bool GameMap::setPlayerCell(int Playerx, int Playery) {
+
+    if(cells[Playery][Playerx].isBlocked() == false)
+    {
+        //Si gano
+        if(cells[Playery][Playerx].id == '$')
+        {
+            drawVictory();
+            isGameOver = true;
+            return true;
+        }
+
+
+        if(PlayerCell != NULL) {
+            PlayerCell->id = ' ';
+        }
+        PlayerCell = &cells[Playery][Playerx];
+        PlayerCell->id = '3';
+
+        return true;
+
+    } else {
+        return false;
     }
-    PlayerCell = &cells[Playery][Playerx];
-    PlayerCell->id = '3';
+
 }
 
 void GameMap::loadMapFromFile(){
@@ -46,9 +66,11 @@ void GameMap::loadMapFromFile(){
 
         while(getline(MyFile,line))
         {
-            for(int x = 0; x < line.length() ; x = x +1 ) {
+            //cout << line.length() << endl;
+
+            for(int x = 0; x < line.length() ; x = x + 1 ) {
                 if(line[x] == '0') {
-                    cells[row][x].id = 0;
+                    cells[row][x].id = ' ';
                 } else {
                     cells[row][x].id = line[x];
                 }
@@ -56,7 +78,51 @@ void GameMap::loadMapFromFile(){
             row++;
         }
 
+        //cout << row << endl;
+
     } else {
         cout << "FATAL ERROR: MAP FILE COULD NOT BE LOADED!!" << endl;
+    }
+}
+
+void GameMap::drawIntro()
+{
+    string line;
+    int row = 0;
+    ifstream MyFile("intro.txt");
+
+    if(MyFile.is_open()){
+
+        while(getline(MyFile,line))
+        {
+            cout << line << endl;
+        }
+
+        cin >> line;
+
+    } else {
+        cout << "FATAL ERROR: INTRO FILE COULD NOT BE LOADED!!" << endl;
+    }
+
+}
+
+
+void GameMap::drawVictory()
+{
+     string line;
+    int row = 0;
+    ifstream MyFile("victory.txt");
+
+    if(MyFile.is_open()){
+
+        while(getline(MyFile,line))
+        {
+            cout << line << endl;
+        }
+
+        cin >> line;
+
+    } else {
+        cout << "FATAL ERROR: INTRO FILE COULD NOT BE LOADED!!" << endl;
     }
 }

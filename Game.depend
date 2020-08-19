@@ -1,0 +1,26 @@
+# depslib dependency file v1.0
+1597832570 source:/home/jorge/platzi-c++/GameCode/Game/main.cpp
+	"Player.h"
+	"Mapset.h"
+	"GameMap.h"
+	<iostream>
+
+1597832562 /home/jorge/platzi-c++/GameCode/Game/include/Player.h
+
+1597833455 source:/home/jorge/platzi-c++/GameCode/Game/src/Player.cpp
+	"Player.h"
+	<iostream>
+
+1597831407 source:/home/jorge/platzi-c++/GameCode/Game/src/Mapset.cpp
+	"Mapset.h"
+
+1597834164 /home/jorge/platzi-c++/GameCode/Game/include/Mapset.h
+
+1597833616 /home/jorge/platzi-c++/GameCode/Game/include/GameMap.h
+	"Mapset.h"
+
+1597834905 source:/home/jorge/platzi-c++/GameCode/Game/src/GameMap.cpp
+	"GameMap.h"
+	<iostream>
+	<fstream>
+

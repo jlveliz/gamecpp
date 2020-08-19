@@ -7,8 +7,12 @@ class Player
     public:
         Player();
         void callInput();
+        char userInput;
+        int x;
+        int y;
 
     protected:
+
 
     private:
 };
